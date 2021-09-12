@@ -1,5 +1,6 @@
 import csv
 import re
+from logger import logger_path
 
 
 def fix_name(contact):
@@ -58,6 +59,7 @@ def join_doubles(doubles):
     return result
 
 
+@logger_path('logs.json')
 def clean_phonebook(contacts_list):
     step_1 = fix_phonebook(contacts_list)
     step_2 = search_doubles(step_1)
@@ -75,5 +77,5 @@ if __name__ == '__main__':
     out = clean_phonebook(contacts_list)
 
     with open("phonebook.csv", "w", encoding='utf-8') as f:
-      datawriter = csv.writer(f, delimiter=',')
-      datawriter.writerows(out)
+        datawriter = csv.writer(f, delimiter=',')
+        datawriter.writerows(out)
